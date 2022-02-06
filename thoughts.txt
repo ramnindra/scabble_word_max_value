@@ -1,0 +1,30 @@
+
+
+For this problem I will trie data structure.
+
+Input string can only only contain characters from 'a' to 'b'.
+
+TrieNode can be tweaked based on focus that we need. If we want to use less memory that it can have 
+linked list but then we will have compromise on compute. Currently I used 26 pointers that can hold charactors from 'a' to 'z'.
+
+
+Data read from file into memory which means that we have limitation of size of input file based on available memory in the system.
+
+It is a single threaded program which means it is only using one core and it will be slow.
+
+Assume there is a string that length N.
+
+Trie will hold that many nodes in the structure. All strings with common prefix will not need to create another node.
+
+Value at a particular node will hold the value until that char.
+
+It takes order of N lookup to file the value of O(N) at max. N being the lenght of the word
+
+Search first tries to find longest prefix match in trie and get the value from that node and add to to running total. Then subtract that string from main string and repeat the same until it finds the total full string.
+
+
+Read word from dictionary and find it value. Keep track of max value strings while traversing the whole dictionary file.
+
+Write highest value words in a file.
+
+From the question its not clear how many top value words I need to write to output file.
