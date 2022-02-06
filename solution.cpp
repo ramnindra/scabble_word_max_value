@@ -5,6 +5,8 @@
  */
 
 #define MAX_CHARS 26
+#define MAX_BUF_LEN 256
+
 struct Status
 {
     int index;
@@ -96,22 +98,29 @@ class Trie
             status->value = 0;
             return;
         }
+        void readDataFromFile()
+        {
+            int ret = 0;
+            char word[256] = "";
+            int value = 0;
+            FILE* fp = fopen("value.txt", "r+");
+            ret = fscanf(fp, "%s %d\n", word, &value);
+            while(ret != EOF)
+            {
+                this->insert(word, value);
+                ret = fscanf(fp, "%s %d\n", word, &value);
+            }
+            fclose(fp);
+        }
 };
 int main(int argc, char* argv[]) 
 { 
     Trie trieData;
-    trieData.insert("f", 12);
-    trieData.insert("dfh", 22);
-    trieData.insert("dfhkdh", 33);
-    trieData.insert("fdg", 12);
-    trieData.insert("fdh", 44);
-    trieData.insert("cafdgter", 55);
-    trieData.insert("dfgd",66);
+    trieData.readDataFromFile();
     int total = 0;
-
     std::string input;
     Status status;
-    input = "dfhf";
+    input = "hacker";
     trieData.search(input.c_str(), &status);
     total += status.value;
     int t = 0;
